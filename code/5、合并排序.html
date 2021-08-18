@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>合并排序</title>
+</head>
+<body>
+  <script>
+  
+  // 归并排序是建立在归并操作上的一种有效的排序算法。
+  // 该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。
+  // 归并排序是一种稳定的排序方法。先使每个子序列有序，再使子序列段间有序。
+  // 若将两个有序表合并成一个有序表，称为2-路归并
+
+
+let arr = [2,1,4,3,5]
+
+  function mergeSort(arr){
+    const len = arr.length
+    if(len<2) return arr
+    const index = Math.floor(len/2)
+    let left = arr.slice(0,index)
+    let right = arr.slice(index)
+    return mergeArr(mergeSort(left),mergeSort(right))
+  }
+
+  function mergeArr(left,right){
+    let result = []
+    while(left.length&&right.length){
+      if(left[0]<right[0]){
+        result.push(left.shift())
+      }else {
+        result.push(right.shift())
+      }
+    }
+    return result.concat(left).concat(right)
+  }
+
+  const a = mergeSort(arr)
+  console.log(a);
+
+// function merge(left, right) {
+//   let result = [];
+//   while (left.length && right.length) {
+//     if (left[0] <= right[0]) {
+//       result.push(left.shift());
+//     } else {
+//       result.push(right.shift());
+//     }
+//   }
+//   return result.concat(left).concat(right);
+// }
+
+
+
+  </script>
+</body>
+</html>
